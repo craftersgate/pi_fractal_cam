@@ -57,19 +57,23 @@ let videoStream = {
                         console.log('Writing frame: '+frameData.length);
 
                     // Merge frames
-                    var imageOne = jp.read(frameData);
-                    var imageTwo = jp.read(lastFrameObj.lastFrame);
-                    imageOne.blit(imageTwo,0,0);
-                    frameData = imageOne.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
-                    console.log(buffer);
+                    jp.read(frameData, function (err, imgone) {
+                        jp.read(lastFrameObj.lastFrame, function (err, imgtwo) {
+                            imgone.composite(imgtwo,0,0);
+                            frameDate = imageOne.getBuffer(Jimp.MIME_JPG, (err, buffer) => {
+                            console.log(buffer);
+                            
+                            lastFrameObj.lastFrame = frameData;
+
+                            res.write(`--myboundary\nContent-Type: image/jpg\nContent-length: ${frameData.length}\n\n`);
+                            res.write(frameData, function(){
+                               isReady = true;
+                               });
+                            });
+                        });
                     });
                     
-                    lastFrameObj.lastFrame = frameData;
 
-                    res.write(`--myboundary\nContent-Type: image/jpg\nContent-length: ${frameData.length}\n\n`);
-                    res.write(frameData, function(){
-                        isReady = true;
-                    });
         
         
                 }
