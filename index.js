@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express();
 const fs = require('fs')
-const Jimp = require('jimp');
+const jp = require('jimp');
 const port = 3000;
 
 // start capture
