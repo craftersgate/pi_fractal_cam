@@ -1,3 +1,8 @@
+Based off node js pi cam streamer 
+https://github.com/caseymcj/raspberrypi_node_camera_web_streamer
+
+The original project is a really great low latency video streamerr. This is an attempt to merge the real time image with computer generated fractal maps using SimpleNoise and Jimp.
+
 # raspberrypi_node_camera_web_streamer
 ## Compatibility Notice
 This project is *NOT* compatible with the latest Raspberry Pi OS 11 (Bullseye). **Please use OS 10 (Buster) for now.** Support for OS 11+ will be added once general Node support for `libcamera` is available.
