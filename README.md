@@ -1,7 +1,7 @@
 Based off node js pi cam streamer 
 https://github.com/caseymcj/raspberrypi_node_camera_web_streamer
 
-The original project is a really great low latency video streamerr. This is an attempt to merge the real time image with computer generated fractal maps using SimpleNoise and Jimp.
+The original project is a really great low latency video streamer. This is an attempt to merge the real time image with computer generated fractal maps using SimpleNoise and Jimp.
 
 # raspberrypi_node_camera_web_streamer
 ## Compatibility Notice
