@@ -55,6 +55,14 @@ let videoStream = {
                     if(isVerbose)
                         console.log('Writing frame: '+frameData.length);
 
+                    // Merge frames
+                    var imageOne = Jimp.read(frameData);
+                    var imageTwo = Jimp.read(lastFrameObj.lastFrame);
+                    imageOne.blit(imageTwo,0,0);
+                    frameData = imageOne.getBuffer(Jimp.MIME_PNG, (err, buffer) => {
+                    console.log(buffer);
+                    });
+                    
                     lastFrameObj.lastFrame = frameData;
 
                     res.write(`--myboundary\nContent-Type: image/jpg\nContent-length: ${frameData.length}\n\n`);
