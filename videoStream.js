@@ -8,6 +8,7 @@ let videoStream = {
     },
     acceptConnections: function(expressApp, cameraOptions, resourcePath, isVerbose){
         const raspberryPiCamera = require('raspberry-pi-camera-native');
+        const jp = require('jimp');
 
         if(!cameraOptions){
             cameraOptions = {
