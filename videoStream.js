@@ -8,7 +8,7 @@ let videoStream = {
     },
     acceptConnections: function(expressApp, cameraOptions, resourcePath, isVerbose){
         const raspberryPiCamera = require('raspberry-pi-camera-native');
-        const jp = require('jimp');
+        const sharp = require('sharp');
 
         if(!cameraOptions){
             cameraOptions = {
@@ -57,20 +57,27 @@ let videoStream = {
                         console.log('Writing frame: '+frameData.length);
 
                     // Merge frames
-                    jp.read(frameData, function (err, imgone) {
-                            
-                            imgone.convolute([[-2, -1, 0], [-1, 1, 1], [0, 1, 2]]);
-                            frameData = imgone.getBuffer(jp.MIME_JPEG, (err, buffer) => {
-                            console.log(buffer);
-                            
+                    
+                            if (lastFrameObj.lastFrame is not null) {
+                                sharp(frameData).composite([{input: lastFrameObj.lastFrame, left: 0, top: 0}]).ToBuffer().then(function(outputBuffer){
+                                    frameData = outputBuffer;
+                                    lastFrameObj.lastFrame = frameData;
+
+                                    res.write(`--myboundary\nContent-Type: image/jpg\nContent-length: ${frameData.length}\n\n`);
+                                    res.write(frameData, function(){
+                                        isReady = true;
+                                    });
+                                });
+                                
+                            } else
+                            {
                             lastFrameObj.lastFrame = frameData;
 
                             res.write(`--myboundary\nContent-Type: image/jpg\nContent-length: ${frameData.length}\n\n`);
                             res.write(frameData, function(){
                                isReady = true;
                                });
-                            });
-                    });
+                            }
                     
 
         
