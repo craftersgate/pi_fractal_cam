@@ -59,7 +59,7 @@ let videoStream = {
                     // Merge frames
                     jp.read(frameData, function (err, imgone) {
 
-                            frameData = imgone.getBuffer(Jimp.MIME_JPG, (err, buffer) => {
+                            frameData = imgone.getBuffer(jp.MIME_JPG, (err, buffer) => {
                             console.log(buffer);
                             
                             lastFrameObj.lastFrame = frameData;
