@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express();
 const fs = require('fs')
-const createNoise2D = require('simplex-noise');
 const Jimp = require('jimp');
 const port = 3000;
 
