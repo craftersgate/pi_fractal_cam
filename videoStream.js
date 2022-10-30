@@ -59,7 +59,7 @@ let videoStream = {
                     // Merge frames
                     jp.read(frameData, function (err, imgone) {
                             
-                            imgone.convolute( kernel: [[-2, -1, 0], [-1, 1, 1], [0, 1, 2]]);
+                            imgone.convolute([[-2, -1, 0], [-1, 1, 1], [0, 1, 2]]);
                             frameData = imgone.getBuffer(jp.MIME_JPEG, (err, buffer) => {
                             console.log(buffer);
                             
