@@ -59,7 +59,7 @@ let videoStream = {
                     // Merge frames
                     
                             if (lastFrameObj.lastFrame !== null) {
-                                sharp(frameData).rotate(180).sharpen().toBuffer().then(function(outputBuffer){
+                                sharp(frameData).rotate(180).composite([{ input: lastFrameObj.lastFrame, gravity: 'southeast' }]).toBuffer().then(function(outputBuffer){
                                     frameData = outputBuffer;
                                     lastFrameObj.lastFrame = frameData;
 
