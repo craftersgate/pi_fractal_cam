@@ -59,7 +59,7 @@ let videoStream = {
                     // Merge frames
                     
                             if (lastFrameObj.lastFrame !== null) {
-                                sharp(frameData).composite([{input: lastFrameObj.lastFrame, left: 0, top: 0}]).ToBuffer().then(function(outputBuffer){
+                                sharp(frameData).composite([{input: lastFrameObj.lastFrame, left: 0, top: 0}]).toBuffer().then(function(outputBuffer){
                                     frameData = outputBuffer;
                                     lastFrameObj.lastFrame = frameData;
 
