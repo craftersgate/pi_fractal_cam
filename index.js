@@ -3,6 +3,9 @@ const app = express();
 const fs = require('fs')
 const port = 3000;
 
+// Start Audio
+require('./alsa_streamer.js');
+
 // start capture
 const videoStream = require('./videoStream');
 videoStream.acceptConnections(app, {
